@@ -1,4 +1,4 @@
-import {PixiComponent} from '@inlet/react-pixi';
+import {PixiComponent} from '@pixi/react';
 import padStart from 'lodash.padstart';
 import {Container, Graphics, Text} from 'pixi.js';
 

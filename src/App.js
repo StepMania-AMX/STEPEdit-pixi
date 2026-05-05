@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Stage, Text} from '@inlet/react-pixi';
+import {Stage, Text} from '@pixi/react';
 import NxParser from './parser/nx';
 import ClickSubscriber from './util/click-subscriber';
 
@@ -18,17 +18,15 @@ export default class App extends Component {
     isLoaded: false
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     window.addEventListener('click', this.onClick, true);
     window.addEventListener('dragover', this.preventDefault, true);
     window.addEventListener('drop', this.onDrop, true);
     window.addEventListener('resize', this.onResize, true);
     window.addEventListener('wheel', this.onWheel, true);
-    loadAssets(() => {
-      loadSpecialAssets(() => {
-        this.setState({isLoaded: true});
-      });
-    });
+    await loadAssets();
+    await loadSpecialAssets();
+    this.setState({isLoaded: true});
   }
 
   componentWillUnmount() {
